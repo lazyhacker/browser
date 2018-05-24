@@ -12,8 +12,8 @@ type window struct {
 
 // GetWindow returns the main browser window object.
 func Window() window {
-	return window {
-		Console: debug{console: global.Get("console")}
+	return window{
+		Console: debug{console: global.Get("console")},
 	}
 }
 

@@ -14,7 +14,7 @@ func (d debug) Clear() {
 
 // Count  logs the number of times this count has been called.
 func (d debug) Count() int {
-	return d.console.Call("count").Init()
+	return d.console.Call("count").Int()
 }
 
 // Error writes an error message to the console.
