@@ -28,10 +28,13 @@ func (w *window) Alert(m string) {
 	w.window.Call("alert", m)
 }
 
+// Invoke executes the Callback that is passed in.
 func Invoke(cb js.Callback) {
 	js.ValueOf(cb).Invoke()
 }
 
+// NewWindow creates a new browser window.  This is analogous to Javascript's
+// window.open().
 func NewWindow(url string) window {
 	w := js.Global.Call("open", url)
 
@@ -42,19 +45,22 @@ func NewWindow(url string) window {
 	}
 }
 
+// Blur removes the focus from the window.
 func (w *window) Blur() {
 	w.window.Call("blur")
 }
 
+// Focus sets the focus to the window.
 func (w *window) Focus() {
 	w.window.Call("focus")
-
 }
 
-func (w *window) Confirm() {
-	w.window.Call("confirm")
+// Confirm shows an confirm dialog window with an OK and Cancel button.
+func (w *window) Confirm() bool {
+	return w.window.Call("confirm").Bool()
 }
 
+// Print outputs the entire window to the browser's print dialog.
 func (w *window) Print() {
 	w.window.Call("print")
 }
