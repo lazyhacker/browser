@@ -8,13 +8,15 @@ import (
 var global = js.Global
 
 type window struct {
-	Console debug
+	Console  debug
+	Document htmldoc
 }
 
 // GetWindow returns the main browser window object.
 func Window() window {
 	return window{
-		Console: debug{console: global.Get("console")},
+		Console:  debug{console: global.Get("console")},
+		Document: htmldoc{document: global.Get("document")},
 	}
 }
 
