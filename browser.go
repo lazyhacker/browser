@@ -5,9 +5,8 @@ import (
 	"syscall/js"
 )
 
-var global = js.Global
-
 type window struct {
+	window   js.Value
 	Console  debug
 	Document htmldoc
 }
@@ -15,12 +14,44 @@ type window struct {
 // GetWindow returns the main browser window object.
 func Window() window {
 	return window{
-		Console:  debug{console: global.Get("console")},
-		Document: htmldoc{document: global.Get("document")},
+		window:   js.Global,
+		Console:  debug{console: js.Global.Get("console")},
+		Document: htmldoc{document: js.Global.Get("document")},
 	}
 }
 
 // Alert shows an alert box in the browser with an OK button.
-func (window) Alert(m string) {
-	global.Call("alert", m)
+func (w *window) Alert(m string) {
+	w.window.Call("alert", m)
+}
+
+func Invoke(cb js.Callback) {
+	js.ValueOf(cb).Invoke()
+}
+
+func NewWindow(url string) window {
+	w := js.Global.Call("open", url)
+
+	return window{
+		window:   w,
+		Console:  debug{console: w.Get("console")},
+		Document: htmldoc{document: w.Get("document")},
+	}
+}
+
+func (w *window) Blur() {
+	w.window.Call("blur")
+}
+
+func (w *window) Focus() {
+	w.window.Call("focus")
+
+}
+
+func (w *window) Confirm() {
+	w.window.Call("confirm")
+}
+
+func (w *window) Print() {
+	w.window.Call("print")
 }
