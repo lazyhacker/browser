@@ -1,1 +1,1 @@
-Go wrapper around the syscalls/js.
+Go bindings to the browser APIs for use with WebAssembly.
