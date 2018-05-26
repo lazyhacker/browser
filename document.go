@@ -7,6 +7,23 @@ type Htmldoc struct {
 	document js.Value
 }
 
+// CreateElement adds an elment to the DOM.
+func (h Htmldoc) CreateElement(n ElementTagName) Element {
+
+	return Element{
+		el: h.document.Call("createElement", n),
+	}
+
+}
+
+// GetElementById receives an element from the DOM by its Id.
+func (d Htmldoc) GetElementById(id string) Element {
+	return Element{
+		el: d.document.Call("getElementById", id),
+	}
+}
+
+// To be implemented
 func (Htmldoc) ActiveElement()          {}
 func (Htmldoc) AddEventListener()       {}
 func (Htmldoc) AdoptNode()              {}
@@ -21,31 +38,19 @@ func (Htmldoc) CharacterSet()           {}
 func (Htmldoc) CreateAttribute()        {}
 func (Htmldoc) CreateComment()          {}
 func (Htmldoc) CreateDocumentFragment() {}
-func (h Htmldoc) CreateElement(n ElementTagName) Element {
-
-	return Element{
-		el: h.document.Call("createElement", n),
-	}
-
-}
-func (Htmldoc) CreateEvent()     {}
-func (Htmldoc) CreateTextNode()  {}
-func (Htmldoc) DefaultView()     {}
-func (Htmldoc) DesignMode()      {}
-func (Htmldoc) Doctype()         {}
-func (Htmldoc) DocumentElement() {}
-func (Htmldoc) DocumentMode()    {}
-func (Htmldoc) DocumentURI()     {}
-func (Htmldoc) Domain()          {}
-func (Htmldoc) DomConfig()       {}
-func (Htmldoc) Embeds()          {}
-func (Htmldoc) ExecCommand()     {}
-func (Htmldoc) Forms()           {}
-func (d Htmldoc) GetElementById(id string) Element {
-	return Element{
-		el: d.document.Call("getElementById", id),
-	}
-}
+func (Htmldoc) CreateEvent()            {}
+func (Htmldoc) CreateTextNode()         {}
+func (Htmldoc) DefaultView()            {}
+func (Htmldoc) DesignMode()             {}
+func (Htmldoc) Doctype()                {}
+func (Htmldoc) DocumentElement()        {}
+func (Htmldoc) DocumentMode()           {}
+func (Htmldoc) DocumentURI()            {}
+func (Htmldoc) Domain()                 {}
+func (Htmldoc) DomConfig()              {}
+func (Htmldoc) Embeds()                 {}
+func (Htmldoc) ExecCommand()            {}
+func (Htmldoc) Forms()                  {}
 func (Htmldoc) GetElementsByClassName() {}
 func (Htmldoc) GetElementsByName()      {}
 func (Htmldoc) GetElementsByTagName()   {}
