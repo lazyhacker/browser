@@ -1,5 +1,6 @@
 package browser
 
+// HTML element tag name.
 const (
 	ElementA                  = "A"
 	ElementAbbr               = "ABBR"

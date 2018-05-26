@@ -4,98 +4,102 @@ import (
 	"syscall/js"
 )
 
+// ElementTagName is the tag name of the element.
 type ElementTagName string
 
-type element struct {
+// Element is a HTML element object.
+type Element struct {
 	el js.Value
 }
 
-func (e *element) Context(ctx string) js.Value {
-
+// Context returns the element's contex value.
+func (e *Element) Context(ctx string) js.Value {
 	return e.el.Call("getContext", ctx)
 }
 
-func (element) AccessKey() {}
-func (e element) AddEventListener(evt string, cb js.Callback) {
+// AddEventListener adds a callback function to an element's browser event.
+func (e Element) AddEventListener(evt string, cb js.Callback) {
 	e.el.Call("addEventListener", js.ValueOf(evt), js.ValueOf(cb))
 }
-func (element) AppendChild()             {}
-func (element) Attributes()              {}
-func (element) Blur()                    {}
-func (element) ChildElementCount()       {}
-func (element) ChildNodes()              {}
-func (element) Children()                {}
-func (element) ClassList()               {}
-func (element) ClassName()               {}
-func (element) Click()                   {}
-func (element) ClientHeight()            {}
-func (element) ClientLeft()              {}
-func (element) ClientTop()               {}
-func (element) ClientWidth()             {}
-func (element) CloneNode()               {}
-func (element) CompareDocumentPosition() {}
-func (element) Contains()                {}
-func (element) ContentEditable()         {}
-func (element) Dir()                     {}
-func (element) FirstChild()              {}
-func (element) FirstElementChild()       {}
-func (element) Focus()                   {}
-func (element) GetAttribute()            {}
-func (element) GetAttributeNode()        {}
-func (element) GetElementsByClassName()  {}
-func (element) GetElementsByTagName()    {}
-func (element) HasAttribute()            {}
-func (element) HasAttributes()           {}
-func (element) HasChildNodes()           {}
-func (element) Id()                      {}
-func (element) InnerHTML()               {}
-func (element) InnerText()               {}
-func (element) InsertAdjacentElement()   {}
-func (element) InsertAdjacentHTML()      {}
-func (element) InsertAdjacentText()      {}
-func (element) InsertBefore()            {}
-func (element) IsContentEditable()       {}
-func (element) IsDefaultNamespace()      {}
-func (element) IsEqualNode()             {}
-func (element) IsSameNode()              {}
-func (element) IsSupported()             {}
-func (element) Lang()                    {}
-func (element) LastChild()               {}
-func (element) LastElementChild()        {}
-func (element) NamespaceURI()            {}
-func (element) NextSibling()             {}
-func (element) NextElementSibling()      {}
-func (element) NodeName()                {}
-func (element) NodeType()                {}
-func (element) NodeValue()               {}
-func (element) Normalize()               {}
-func (element) OffsetHeight()            {}
-func (element) OffsetWidth()             {}
-func (element) OffsetLeft()              {}
-func (element) OffsetParent()            {}
-func (element) OffsetTop()               {}
-func (element) OwnerDocument()           {}
-func (element) ParentNode()              {}
-func (element) ParentElement()           {}
-func (element) PreviousSibling()         {}
-func (element) PreviousElementSibling()  {}
-func (element) QuerySelector()           {}
-func (element) QuerySelectorAll()        {}
-func (element) RemoveAttribute()         {}
-func (element) RemoveAttributeNode()     {}
-func (element) RemoveChild()             {}
-func (element) RemoveEventListener()     {}
-func (element) ReplaceChild()            {}
-func (element) ScrollHeight()            {}
-func (element) ScrollIntoView()          {}
-func (element) ScrollLeft()              {}
-func (element) ScrollTop()               {}
-func (element) ScrollWidth()             {}
-func (element) SetAttribute()            {}
-func (element) SetAttributeNode()        {}
-func (element) Style()                   {}
-func (element) TabIndex()                {}
-func (element) TagName()                 {}
-func (element) TextContent()             {}
-func (element) Title()                   {}
-func (element) ToString()                {}
+
+func (Element) AccessKey()               {}
+func (Element) AppendChild()             {}
+func (Element) Attributes()              {}
+func (Element) Blur()                    {}
+func (Element) ChildElementCount()       {}
+func (Element) ChildNodes()              {}
+func (Element) Children()                {}
+func (Element) ClassList()               {}
+func (Element) ClassName()               {}
+func (Element) Click()                   {}
+func (Element) ClientHeight()            {}
+func (Element) ClientLeft()              {}
+func (Element) ClientTop()               {}
+func (Element) ClientWidth()             {}
+func (Element) CloneNode()               {}
+func (Element) CompareDocumentPosition() {}
+func (Element) Contains()                {}
+func (Element) ContentEditable()         {}
+func (Element) Dir()                     {}
+func (Element) FirstChild()              {}
+func (Element) FirstElementChild()       {}
+func (Element) Focus()                   {}
+func (Element) GetAttribute()            {}
+func (Element) GetAttributeNode()        {}
+func (Element) GetElementsByClassName()  {}
+func (Element) GetElementsByTagName()    {}
+func (Element) HasAttribute()            {}
+func (Element) HasAttributes()           {}
+func (Element) HasChildNodes()           {}
+func (Element) Id()                      {}
+func (Element) InnerHTML()               {}
+func (Element) InnerText()               {}
+func (Element) InsertAdjacentElement()   {}
+func (Element) InsertAdjacentHTML()      {}
+func (Element) InsertAdjacentText()      {}
+func (Element) InsertBefore()            {}
+func (Element) IsContentEditable()       {}
+func (Element) IsDefaultNamespace()      {}
+func (Element) IsEqualNode()             {}
+func (Element) IsSameNode()              {}
+func (Element) IsSupported()             {}
+func (Element) Lang()                    {}
+func (Element) LastChild()               {}
+func (Element) LastElementChild()        {}
+func (Element) NamespaceURI()            {}
+func (Element) NextSibling()             {}
+func (Element) NextElementSibling()      {}
+func (Element) NodeName()                {}
+func (Element) NodeType()                {}
+func (Element) NodeValue()               {}
+func (Element) Normalize()               {}
+func (Element) OffsetHeight()            {}
+func (Element) OffsetWidth()             {}
+func (Element) OffsetLeft()              {}
+func (Element) OffsetParent()            {}
+func (Element) OffsetTop()               {}
+func (Element) OwnerDocument()           {}
+func (Element) ParentNode()              {}
+func (Element) ParentElement()           {}
+func (Element) PreviousSibling()         {}
+func (Element) PreviousElementSibling()  {}
+func (Element) QuerySelector()           {}
+func (Element) QuerySelectorAll()        {}
+func (Element) RemoveAttribute()         {}
+func (Element) RemoveAttributeNode()     {}
+func (Element) RemoveChild()             {}
+func (Element) RemoveEventListener()     {}
+func (Element) ReplaceChild()            {}
+func (Element) ScrollHeight()            {}
+func (Element) ScrollIntoView()          {}
+func (Element) ScrollLeft()              {}
+func (Element) ScrollTop()               {}
+func (Element) ScrollWidth()             {}
+func (Element) SetAttribute()            {}
+func (Element) SetAttributeNode()        {}
+func (Element) Style()                   {}
+func (Element) TabIndex()                {}
+func (Element) TagName()                 {}
+func (Element) TextContent()             {}
+func (Element) Title()                   {}
+func (Element) ToString()                {}

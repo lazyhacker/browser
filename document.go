@@ -2,73 +2,73 @@ package browser
 
 import "syscall/js"
 
-// htmldoc is the root node of the HTML document.
-type htmldoc struct {
+// Htmldoc is the root node of the HTML document.
+type Htmldoc struct {
 	document js.Value
 }
 
-func (htmldoc) ActiveElement()          {}
-func (htmldoc) AddEventListener()       {}
-func (htmldoc) AdoptNode()              {}
-func (htmldoc) Anchors()                {}
-func (htmldoc) Applets()                {}
-func (htmldoc) BaseURI()                {}
-func (htmldoc) Body()                   {}
-func (htmldoc) Close()                  {}
-func (htmldoc) Cookie()                 {}
-func (htmldoc) Charset()                {}
-func (htmldoc) CharacterSet()           {}
-func (htmldoc) CreateAttribute()        {}
-func (htmldoc) CreateComment()          {}
-func (htmldoc) CreateDocumentFragment() {}
-func (h htmldoc) CreateElement(n ElementTagName) element {
+func (Htmldoc) ActiveElement()          {}
+func (Htmldoc) AddEventListener()       {}
+func (Htmldoc) AdoptNode()              {}
+func (Htmldoc) Anchors()                {}
+func (Htmldoc) Applets()                {}
+func (Htmldoc) BaseURI()                {}
+func (Htmldoc) Body()                   {}
+func (Htmldoc) Close()                  {}
+func (Htmldoc) Cookie()                 {}
+func (Htmldoc) Charset()                {}
+func (Htmldoc) CharacterSet()           {}
+func (Htmldoc) CreateAttribute()        {}
+func (Htmldoc) CreateComment()          {}
+func (Htmldoc) CreateDocumentFragment() {}
+func (h Htmldoc) CreateElement(n ElementTagName) Element {
 
-	return element{
+	return Element{
 		el: h.document.Call("createElement", n),
 	}
 
 }
-func (htmldoc) CreateEvent()     {}
-func (htmldoc) CreateTextNode()  {}
-func (htmldoc) DefaultView()     {}
-func (htmldoc) DesignMode()      {}
-func (htmldoc) Doctype()         {}
-func (htmldoc) DocumentElement() {}
-func (htmldoc) DocumentMode()    {}
-func (htmldoc) DocumentURI()     {}
-func (htmldoc) Domain()          {}
-func (htmldoc) DomConfig()       {}
-func (htmldoc) Embeds()          {}
-func (htmldoc) ExecCommand()     {}
-func (htmldoc) Forms()           {}
-func (d htmldoc) GetElementById(id string) element {
-	return element{
+func (Htmldoc) CreateEvent()     {}
+func (Htmldoc) CreateTextNode()  {}
+func (Htmldoc) DefaultView()     {}
+func (Htmldoc) DesignMode()      {}
+func (Htmldoc) Doctype()         {}
+func (Htmldoc) DocumentElement() {}
+func (Htmldoc) DocumentMode()    {}
+func (Htmldoc) DocumentURI()     {}
+func (Htmldoc) Domain()          {}
+func (Htmldoc) DomConfig()       {}
+func (Htmldoc) Embeds()          {}
+func (Htmldoc) ExecCommand()     {}
+func (Htmldoc) Forms()           {}
+func (d Htmldoc) GetElementById(id string) Element {
+	return Element{
 		el: d.document.Call("getElementById", id),
 	}
 }
-func (htmldoc) GetElementsByClassName() {}
-func (htmldoc) GetElementsByName()      {}
-func (htmldoc) GetElementsByTagName()   {}
-func (htmldoc) HasFocus()               {}
-func (htmldoc) Head()                   {}
-func (htmldoc) Images()                 {}
-func (htmldoc) Implementation()         {}
-func (htmldoc) ImportNode()             {}
-func (htmldoc) InputEncoding()          {}
-func (htmldoc) LastModified()           {}
-func (htmldoc) Links()                  {}
-func (htmldoc) Normalize()              {}
-func (htmldoc) NormalizeDocument()      {}
-func (htmldoc) Open()                   {}
-func (htmldoc) QuerySelector()          {}
-func (htmldoc) QuerySelectorAll()       {}
-func (htmldoc) ReadyState()             {}
-func (htmldoc) Referrer()               {}
-func (htmldoc) RemoveEventListener()    {}
-func (htmldoc) RenameNode()             {}
-func (htmldoc) Scripts()                {}
-func (htmldoc) StrictErrorChecking()    {}
-func (htmldoc) Title()                  {}
-func (htmldoc) URL()                    {}
-func (htmldoc) Write()                  {}
-func (htmldoc) Writeln()                {}
+func (Htmldoc) GetElementsByClassName() {}
+func (Htmldoc) GetElementsByName()      {}
+func (Htmldoc) GetElementsByTagName()   {}
+func (Htmldoc) HasFocus()               {}
+func (Htmldoc) Head()                   {}
+func (Htmldoc) Images()                 {}
+func (Htmldoc) Implementation()         {}
+func (Htmldoc) ImportNode()             {}
+func (Htmldoc) InputEncoding()          {}
+func (Htmldoc) LastModified()           {}
+func (Htmldoc) Links()                  {}
+func (Htmldoc) Normalize()              {}
+func (Htmldoc) NormalizeDocument()      {}
+func (Htmldoc) Open()                   {}
+func (Htmldoc) QuerySelector()          {}
+func (Htmldoc) QuerySelectorAll()       {}
+func (Htmldoc) ReadyState()             {}
+func (Htmldoc) Referrer()               {}
+func (Htmldoc) RemoveEventListener()    {}
+func (Htmldoc) RenameNode()             {}
+func (Htmldoc) Scripts()                {}
+func (Htmldoc) StrictErrorChecking()    {}
+func (Htmldoc) Title()                  {}
+func (Htmldoc) URL()                    {}
+func (Htmldoc) Write()                  {}
+func (Htmldoc) Writeln()                {}
