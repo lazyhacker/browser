@@ -22,20 +22,27 @@ func (e Element) AddEventListener(evt string, cb js.Callback) {
 	e.el.Call("addEventListener", js.ValueOf(evt), js.ValueOf(cb))
 }
 
-func (Element) AccessKey()               {}
-func (Element) AppendChild()             {}
-func (Element) Attributes()              {}
-func (Element) Blur()                    {}
-func (Element) ChildElementCount()       {}
-func (Element) ChildNodes()              {}
-func (Element) Children()                {}
-func (Element) ClassList()               {}
-func (Element) ClassName()               {}
-func (Element) Click()                   {}
-func (Element) ClientHeight()            {}
-func (Element) ClientLeft()              {}
-func (Element) ClientTop()               {}
-func (Element) ClientWidth()             {}
+func (Element) AccessKey()         {}
+func (Element) AppendChild()       {}
+func (Element) Attributes()        {}
+func (Element) Blur()              {}
+func (Element) ChildElementCount() {}
+func (Element) ChildNodes()        {}
+func (Element) Children()          {}
+func (Element) ClassList()         {}
+func (Element) ClassName()         {}
+func (Element) Click()             {}
+func (e *Element) ClientHeight() int {
+
+	return e.el.Get("clientHeight").Int()
+}
+func (Element) ClientLeft() {}
+func (Element) ClientTop()  {}
+func (e *Element) ClientWidth() int {
+
+	return e.el.Get("clientWidth").Int()
+
+}
 func (Element) CloneNode()               {}
 func (Element) CompareDocumentPosition() {}
 func (Element) Contains()                {}

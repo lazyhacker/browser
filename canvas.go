@@ -149,6 +149,33 @@ func (c *Canvas) IsPointInPath(x, y float64) bool {
 	return c.context().Call("isPointInPath", js.ValueOf(x), js.ValueOf(y)).Bool()
 }
 
+// FillText draws text to the canvas.
+func (c *Canvas) FillText(str string, x, y float64) {
+	c.context().Call("fillText", js.ValueOf(str), js.ValueOf(x), js.ValueOf(y))
+}
+
+// StrokeText draws text to the canvas (no fill).
+func (c *Canvas) StrokeText(str string, x, y float64) {
+	c.context().Call("strokeText", js.ValueOf(str), js.ValueOf(x), js.ValueOf(y))
+}
+
+// MeasureText returns the width of the text passed in.
+func (c *Canvas) MeasureText(str string) float64 {
+	return c.context().Call("measureText", str).Float()
+}
+
+// TextBaseline sets the current baseline used with drawing text.
+// alphabetic	(default) The text baseline is the normal alphabetic baseline
+// top	The text baseline is the top of the em square
+// hanging	The text baseline is the hanging baseline
+// middle	The text baseline is the middle of the em square
+// ideographic	The text baseline is the ideographic baseline
+// bottom	The text baseline is the bottom of the bounding box
+func (c *Canvas) TextBaseline(b string) {
+	c.context().Set("textBaseline", b)
+}
+
+// To be implemented
 func (c *Canvas) Rect(x, y, w, h float64)                        {}
 func (c *Canvas) Restore()                                       {}
 func (c *Canvas) Rotate(angle float64)                           {}
@@ -160,13 +187,11 @@ func (c *Canvas) ShadowOffsetX()                                 {}
 func (c *Canvas) ShadowOffsetY()                                 {}
 func (c *Canvas) StrokeRect(x, y, w, h float64)                  {}
 func (c *Canvas) StrokeStyle(value ...interface{})               {}
-func (c *Canvas) StrokeText()                                    {}
 func (c *Canvas) Translate(x, y float64)                         {}
 func (c *Canvas) GlobalAlpha(alpha float64)                      {}
 func (c *Canvas) GlobalCompositeOperation()                      {}
 func (c *Canvas) LineCap()                                       {}
 func (c *Canvas) MiterLimit()                                    {}
-func (c *Canvas) TextBaseline()                                  {}
 func (c *Canvas) CreatePattern()                                 {}
 func (c *Canvas) CreateRadialGradient()                          {}
 func (c *Canvas) DrawImage(image interface{}, coords ...float64) {}
@@ -175,8 +200,21 @@ func (c *Canvas) FillStyle(value ...interface{})                 {}
 func (c *Canvas) PutImageData(img *image.RGBA, x, y int)         {}
 func (c *Canvas) LineWidth(width float64)                        {}
 func (c *Canvas) AddColorStop()                                  {}
-func (c *Canvas) FillText(str string, x, y float64)              {}
 
 //func (c *Canvas) Context()                                       {}
-// Width returns the width of an imageData object.
-//func (c *Canvas) Width() int     {}
+// Width returns the width of the canvas.
+func (c *Canvas) Width() int {
+
+	return c.canvas.ClientWidth()
+
+}
+
+// Height returns the height of the canvas.
+func (c *Canvas) Height() int {
+	return c.canvas.ClientHeight()
+}
+
+// Clear clears the canvas.
+func (c *Canvas) Clear() {
+	c.ClearRect(0, 0, float64(c.Width()), float64(c.Height()))
+}
