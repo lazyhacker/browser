@@ -1,8 +1,6 @@
 package browser
 
 import (
-	"fmt"
-	"strings"
 	"syscall/js"
 )
 
@@ -101,14 +99,3 @@ func (element) TagName()                 {}
 func (element) TextContent()             {}
 func (element) Title()                   {}
 func (element) ToString()                {}
-
-func (e element) ToCanvas() (canvas, error) {
-
-	if strings.ToUpper(e.el.Get("tagName").String()) != ElementCanvas {
-		return canvas{}, fmt.Errorf("mismatched element type. %s != %s", e.el.Get("tagName").String(), ElementCanvas)
-	}
-
-	return canvas{
-		canvas: e,
-	}, nil
-}
