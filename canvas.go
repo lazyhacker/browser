@@ -13,9 +13,14 @@ type canvas struct {
 const ElementCanvas = "CANVAS"
 
 func (c *canvas) Arc(x, y, radius, startAngle, endAngle float64, counterclockwise bool) {
-
 	ctx := c.context()
-	ctx.Call("arc", js.ValueOf(x), js.ValueOf(y), js.ValueOf(radius), js.ValueOf(startAngle), js.ValueOf(endAngle), js.ValueOf(counterclockwise))
+	ctx.Call("arc",
+		js.ValueOf(x),
+		js.ValueOf(y),
+		js.ValueOf(radius),
+		js.ValueOf(startAngle),
+		js.ValueOf(endAngle),
+		js.ValueOf(counterclockwise))
 
 }
 func (c *canvas) ArcTo(x1, y1, x2, y2, radius float64) {}
@@ -23,6 +28,22 @@ func (c *canvas) BeginPath() {
 	ctx := c.context()
 	ctx.Call("beginPath")
 }
+
+func (c *canvas) Stroke() {
+
+	ctx := c.context()
+	ctx.Call("stroke")
+
+}
+
+func (c *canvas) context() js.Value {
+	if c.ctx == nil {
+		a := c.canvas.Context("2d")
+		c.ctx = &a
+	}
+	return *c.ctx
+}
+
 func (c *canvas) BezierCurveTo(x1, y1, x2, y2, x3, y3 float64) {}
 func (c *canvas) ClearLinearGradient()                         {}
 func (c *canvas) ClearRect(x, y, w, h float64)                 {}
@@ -61,21 +82,6 @@ func (c *canvas) ShadowBlur()          {}
 func (c *canvas) ShadowColor()         {}
 func (c *canvas) ShadowOffsetX()       {}
 func (c *canvas) ShadowOffsetY()       {}
-
-func (c *canvas) Stroke() {
-
-	ctx := c.context()
-	ctx.Call("stroke")
-
-}
-
-func (c *canvas) context() js.Value {
-	ctx := c.ctx
-	if ctx == nil {
-		*ctx = c.canvas.Context("2d")
-	}
-	return *ctx
-}
 
 func (c *canvas) StrokeRect(x, y, w, h float64)    {}
 func (c *canvas) StrokeStyle(value ...interface{}) {}

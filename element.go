@@ -6,11 +6,10 @@ import (
 	"syscall/js"
 )
 
-type ElementTypeName string
+type ElementTagName string
 
 type element struct {
-	el   js.Value
-	Name ElementTypeName
+	el js.Value
 }
 
 func (e *element) Context(ctx string) js.Value {
@@ -105,8 +104,8 @@ func (element) ToString()                {}
 
 func (e element) ToCanvas() (canvas, error) {
 
-	if strings.ToUpper(e.el.Get("tagName").String()) != strings.ToUpper(string(e.Name)) {
-		return canvas{}, fmt.Errorf("mismatched element type. %s != %s", e.el.Get("tagname"), e.Name)
+	if strings.ToUpper(e.el.Get("tagName").String()) != ElementCanvas {
+		return canvas{}, fmt.Errorf("mismatched element type. %s != %s", e.el.Get("tagName").String(), ElementCanvas)
 	}
 
 	return canvas{

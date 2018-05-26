@@ -21,11 +21,10 @@ func (htmldoc) CharacterSet()           {}
 func (htmldoc) CreateAttribute()        {}
 func (htmldoc) CreateComment()          {}
 func (htmldoc) CreateDocumentFragment() {}
-func (h htmldoc) CreateElement(n ElementTypeName) element {
+func (h htmldoc) CreateElement(n ElementTagName) element {
 
 	return element{
-		el:   h.document.Call("createElement", n),
-		Name: n,
+		el: h.document.Call("createElement", n),
 	}
 
 }
@@ -42,10 +41,9 @@ func (htmldoc) DomConfig()       {}
 func (htmldoc) Embeds()          {}
 func (htmldoc) ExecCommand()     {}
 func (htmldoc) Forms()           {}
-func (d htmldoc) GetElementById(id string, t ElementTypeName) element {
+func (d htmldoc) GetElementById(id string) element {
 	return element{
-		el:   d.document.Call("getElementById", id),
-		Name: t,
+		el: d.document.Call("getElementById", id),
 	}
 }
 func (htmldoc) GetElementsByClassName() {}
