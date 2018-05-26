@@ -102,11 +102,21 @@ func (Element) ScrollIntoView()          {}
 func (Element) ScrollLeft()              {}
 func (Element) ScrollTop()               {}
 func (Element) ScrollWidth()             {}
-func (Element) SetAttribute()            {}
-func (Element) SetAttributeNode()        {}
-func (Element) Style()                   {}
-func (Element) TabIndex()                {}
-func (Element) TagName()                 {}
-func (Element) TextContent()             {}
-func (Element) Title()                   {}
-func (Element) ToString()                {}
+func (e Element) SetAttribute(a string, k interface{}) {
+
+	e.el.Call("setAttribute", js.ValueOf(a), js.ValueOf(k))
+
+}
+func (e Element) SetProperty(a string, k interface{}) {
+
+	e.el.Set(a, js.ValueOf(k))
+
+}
+
+func (Element) SetAttributeNode() {}
+func (Element) Style()            {}
+func (Element) TabIndex()         {}
+func (Element) TagName()          {}
+func (Element) TextContent()      {}
+func (Element) Title()            {}
+func (Element) ToString()         {}
