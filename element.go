@@ -1,9 +1,21 @@
 package browser
 
-import "syscall/js"
+import (
+	"fmt"
+	"strings"
+	"syscall/js"
+)
+
+type ElementTypeName string
 
 type element struct {
-	el js.Value
+	el   js.Value
+	Name ElementTypeName
+}
+
+func (e *element) Context(ctx string) js.Value {
+
+	return e.el.Call("getContext", ctx)
 }
 
 func (element) AccessKey() {}
@@ -90,3 +102,14 @@ func (element) TagName()                 {}
 func (element) TextContent()             {}
 func (element) Title()                   {}
 func (element) ToString()                {}
+
+func (e element) ToCanvas() (canvas, error) {
+
+	if strings.ToUpper(e.el.Get("tagName").String()) != strings.ToUpper(string(e.Name)) {
+		return canvas{}, fmt.Errorf("mismatched element type. %s != %s", e.el.Get("tagname"), e.Name)
+	}
+
+	return canvas{
+		canvas: e,
+	}, nil
+}

@@ -21,22 +21,32 @@ func (htmldoc) CharacterSet()           {}
 func (htmldoc) CreateAttribute()        {}
 func (htmldoc) CreateComment()          {}
 func (htmldoc) CreateDocumentFragment() {}
-func (htmldoc) CreateElement()          {}
-func (htmldoc) CreateEvent()            {}
-func (htmldoc) CreateTextNode()         {}
-func (htmldoc) DefaultView()            {}
-func (htmldoc) DesignMode()             {}
-func (htmldoc) Doctype()                {}
-func (htmldoc) DocumentElement()        {}
-func (htmldoc) DocumentMode()           {}
-func (htmldoc) DocumentURI()            {}
-func (htmldoc) Domain()                 {}
-func (htmldoc) DomConfig()              {}
-func (htmldoc) Embeds()                 {}
-func (htmldoc) ExecCommand()            {}
-func (htmldoc) Forms()                  {}
-func (d htmldoc) GetElementById(id string) element {
-	return element{el: d.document.Call("getElementById", id)}
+func (h htmldoc) CreateElement(n ElementTypeName) element {
+
+	return element{
+		el:   h.document.Call("createElement", n),
+		Name: n,
+	}
+
+}
+func (htmldoc) CreateEvent()     {}
+func (htmldoc) CreateTextNode()  {}
+func (htmldoc) DefaultView()     {}
+func (htmldoc) DesignMode()      {}
+func (htmldoc) Doctype()         {}
+func (htmldoc) DocumentElement() {}
+func (htmldoc) DocumentMode()    {}
+func (htmldoc) DocumentURI()     {}
+func (htmldoc) Domain()          {}
+func (htmldoc) DomConfig()       {}
+func (htmldoc) Embeds()          {}
+func (htmldoc) ExecCommand()     {}
+func (htmldoc) Forms()           {}
+func (d htmldoc) GetElementById(id string, t ElementTypeName) element {
+	return element{
+		el:   d.document.Call("getElementById", id),
+		Name: t,
+	}
 }
 func (htmldoc) GetElementsByClassName() {}
 func (htmldoc) GetElementsByName()      {}
