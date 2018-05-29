@@ -59,49 +59,71 @@ func (Element) HasAttribute()            {}
 func (Element) HasAttributes()           {}
 func (Element) HasChildNodes()           {}
 func (Element) Id()                      {}
-func (Element) InnerHTML()               {}
-func (Element) InnerText()               {}
-func (Element) InsertAdjacentElement()   {}
-func (Element) InsertAdjacentHTML()      {}
-func (Element) InsertAdjacentText()      {}
-func (Element) InsertBefore()            {}
-func (Element) IsContentEditable()       {}
-func (Element) IsDefaultNamespace()      {}
-func (Element) IsEqualNode()             {}
-func (Element) IsSameNode()              {}
-func (Element) IsSupported()             {}
-func (Element) Lang()                    {}
-func (Element) LastChild()               {}
-func (Element) LastElementChild()        {}
-func (Element) NamespaceURI()            {}
-func (Element) NextSibling()             {}
-func (Element) NextElementSibling()      {}
-func (Element) NodeName()                {}
-func (Element) NodeType()                {}
-func (Element) NodeValue()               {}
-func (Element) Normalize()               {}
-func (Element) OffsetHeight()            {}
-func (Element) OffsetWidth()             {}
-func (Element) OffsetLeft()              {}
-func (Element) OffsetParent()            {}
-func (Element) OffsetTop()               {}
-func (Element) OwnerDocument()           {}
-func (Element) ParentNode()              {}
-func (Element) ParentElement()           {}
-func (Element) PreviousSibling()         {}
-func (Element) PreviousElementSibling()  {}
-func (Element) QuerySelector()           {}
-func (Element) QuerySelectorAll()        {}
-func (Element) RemoveAttribute()         {}
-func (Element) RemoveAttributeNode()     {}
-func (Element) RemoveChild()             {}
-func (Element) RemoveEventListener()     {}
-func (Element) ReplaceChild()            {}
-func (Element) ScrollHeight()            {}
-func (Element) ScrollIntoView()          {}
-func (Element) ScrollLeft()              {}
-func (Element) ScrollTop()               {}
-func (Element) ScrollWidth()             {}
+func (e *Element) InnerHTML(s string) {
+
+	e.el.Set("innerHTML", s)
+
+}
+func (Element) InnerText()             {}
+func (Element) InsertAdjacentElement() {}
+func (Element) InsertAdjacentHTML()    {}
+func (Element) InsertAdjacentText()    {}
+func (Element) InsertBefore()          {}
+func (Element) IsContentEditable()     {}
+func (Element) IsDefaultNamespace()    {}
+func (Element) IsEqualNode()           {}
+func (Element) IsSameNode()            {}
+func (Element) IsSupported()           {}
+func (Element) Lang()                  {}
+func (Element) LastChild()             {}
+func (Element) LastElementChild()      {}
+func (Element) NamespaceURI()          {}
+func (Element) NextSibling()           {}
+func (Element) NextElementSibling()    {}
+func (Element) NodeName()              {}
+func (Element) NodeType()              {}
+
+func (e Element) NodeValue() string {
+	return e.el.Get("nodeValue").String()
+}
+
+// Todo: Value might need to be at the specific element types since the
+// behaviour of value is different based on the element.  This is here just
+// as a hack.
+
+// Value returns the value of the element.
+func (e Element) Value() string {
+	return e.el.Get("value").String()
+}
+
+// SetValue sets the value of the element.
+func (e Element) SetValue(s string) {
+	e.el.Set("value", s)
+}
+
+func (Element) Normalize()              {}
+func (Element) OffsetHeight()           {}
+func (Element) OffsetWidth()            {}
+func (Element) OffsetLeft()             {}
+func (Element) OffsetParent()           {}
+func (Element) OffsetTop()              {}
+func (Element) OwnerDocument()          {}
+func (Element) ParentNode()             {}
+func (Element) ParentElement()          {}
+func (Element) PreviousSibling()        {}
+func (Element) PreviousElementSibling() {}
+func (Element) QuerySelector()          {}
+func (Element) QuerySelectorAll()       {}
+func (Element) RemoveAttribute()        {}
+func (Element) RemoveAttributeNode()    {}
+func (Element) RemoveChild()            {}
+func (Element) RemoveEventListener()    {}
+func (Element) ReplaceChild()           {}
+func (Element) ScrollHeight()           {}
+func (Element) ScrollIntoView()         {}
+func (Element) ScrollLeft()             {}
+func (Element) ScrollTop()              {}
+func (Element) ScrollWidth()            {}
 func (e Element) SetAttribute(a string, k interface{}) {
 
 	e.el.Call("setAttribute", js.ValueOf(a), js.ValueOf(k))
