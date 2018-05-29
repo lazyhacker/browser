@@ -1,7 +1,7 @@
 // Package browser provides Go bindings to browser APIs.  This package is
 // intended to be used with WebAssembly to abstract Go developers from having
 // to deal with writing javascript inside of Go.
-package browser
+package browser // import "lazyhackergo.com/browser"
 
 import (
 	"syscall/js"
