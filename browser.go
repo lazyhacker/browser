@@ -64,3 +64,11 @@ func (w *Window) Confirm() bool {
 func (w *Window) Print() {
 	w.window.Call("print")
 }
+
+func (w *Window) ScrollTo(xpos, ypos int) {
+	w.window.Call("scrollTo", js.ValueOf(xpos), js.ValueOf(ypos))
+}
+
+func (w *Window) InnerHeight() int {
+	return w.window.Get("innerHeight").Int()
+}

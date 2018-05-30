@@ -31,7 +31,9 @@ func (Element) ChildNodes()        {}
 func (Element) Children()          {}
 func (Element) ClassList()         {}
 func (Element) ClassName()         {}
-func (Element) Click()             {}
+func (e *Element) Click() {
+	e.el.Call("click")
+}
 func (e *Element) ClientHeight() int {
 
 	return e.el.Get("clientHeight").Int()
@@ -50,20 +52,27 @@ func (Element) ContentEditable()         {}
 func (Element) Dir()                     {}
 func (Element) FirstChild()              {}
 func (Element) FirstElementChild()       {}
-func (Element) Focus()                   {}
-func (Element) GetAttribute()            {}
-func (Element) GetAttributeNode()        {}
-func (Element) GetElementsByClassName()  {}
-func (Element) GetElementsByTagName()    {}
-func (Element) HasAttribute()            {}
-func (Element) HasAttributes()           {}
-func (Element) HasChildNodes()           {}
-func (Element) Id()                      {}
-func (e *Element) InnerHTML(s string) {
+func (e *Element) Focus() {
+	e.el.Call("focus")
+}
+func (Element) GetAttribute()           {}
+func (Element) GetAttributeNode()       {}
+func (Element) GetElementsByClassName() {}
+func (Element) GetElementsByTagName()   {}
+func (Element) HasAttribute()           {}
+func (Element) HasAttributes()          {}
+func (Element) HasChildNodes()          {}
+func (Element) Id()                     {}
+func (e *Element) InnerHTML() string {
 
-	e.el.Set("innerHTML", s)
+	return e.el.Get("innerHTML").String()
 
 }
+
+func (e *Element) SetInnerHTML(s string) {
+	e.el.Set("innerHTML", s)
+}
+
 func (Element) InnerText()             {}
 func (Element) InsertAdjacentElement() {}
 func (Element) InsertAdjacentHTML()    {}
