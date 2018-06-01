@@ -18,7 +18,11 @@ func (w *WebStorage) Key(index int) string {
 }
 
 func (w *WebStorage) GetItem(k string) string {
-	return w.storage.Call("getItem", js.ValueOf(k)).String()
+	v := w.storage.Call("getItem", js.ValueOf(k))
+	if v == js.Null {
+		return ""
+	}
+	return v.String()
 }
 
 func (w *WebStorage) SetItem(k, v string) string {
