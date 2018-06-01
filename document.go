@@ -65,15 +65,34 @@ func (Htmldoc) Links()                  {}
 func (Htmldoc) Normalize()              {}
 func (Htmldoc) NormalizeDocument()      {}
 func (Htmldoc) Open()                   {}
-func (Htmldoc) QuerySelector()          {}
-func (Htmldoc) QuerySelectorAll()       {}
-func (Htmldoc) ReadyState()             {}
-func (Htmldoc) Referrer()               {}
-func (Htmldoc) RemoveEventListener()    {}
-func (Htmldoc) RenameNode()             {}
-func (Htmldoc) Scripts()                {}
-func (Htmldoc) StrictErrorChecking()    {}
-func (Htmldoc) Title()                  {}
-func (Htmldoc) URL()                    {}
-func (Htmldoc) Write()                  {}
-func (Htmldoc) Writeln()                {}
+
+// QuerySelector returns the first matching element where class = s.
+func (h *Htmldoc) QuerySelector(s string) Element {
+
+	return Element{el: h.document.Call("querySelector", s)}
+
+}
+
+// QuerySelectorAll returns the list of elements where class = s.
+func (h *Htmldoc) QuerySelectorAll(s string) []Element {
+
+	js := h.document.Call("querySelectorAll", s)
+
+	e := make([]Element, js.Length())
+	for i := 0; i < js.Length(); i++ {
+		e[i] = Element{el: js.Index(i)}
+	}
+
+	return e
+}
+
+func (Htmldoc) ReadyState()          {}
+func (Htmldoc) Referrer()            {}
+func (Htmldoc) RemoveEventListener() {}
+func (Htmldoc) RenameNode()          {}
+func (Htmldoc) Scripts()             {}
+func (Htmldoc) StrictErrorChecking() {}
+func (Htmldoc) Title()               {}
+func (Htmldoc) URL()                 {}
+func (Htmldoc) Write()               {}
+func (Htmldoc) Writeln()             {}

@@ -145,9 +145,28 @@ func (e Element) SetProperty(a string, k interface{}) {
 }
 
 func (Element) SetAttributeNode() {}
-func (Element) Style()            {}
-func (Element) TabIndex()         {}
-func (Element) TagName()          {}
-func (Element) TextContent()      {}
-func (Element) Title()            {}
-func (Element) ToString()         {}
+
+type PropertyStyle struct {
+	property string
+	value    string
+}
+
+func (e *Element) Style(p string) PropertyStyle {
+	return PropertyStyle{
+		property: p,
+		value:    e.el.Get("style").Get(p).String(),
+	}
+}
+
+func (e *Element) SetStyle(es PropertyStyle) {
+
+	p := e.el.Get("style")
+	p.Set(es.property, es.value)
+
+}
+
+func (Element) TabIndex()    {}
+func (Element) TagName()     {}
+func (Element) TextContent() {}
+func (Element) Title()       {}
+func (Element) ToString()    {}
