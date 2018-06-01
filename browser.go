@@ -9,17 +9,21 @@ import (
 
 // Window is a browser window.
 type Window struct {
-	window   js.Value
-	Console  Debug
-	Document Htmldoc
+	window         js.Value
+	Console        Debug
+	Document       Htmldoc
+	LocalStorage   WebStorage
+	SessionStorage WebStorage
 }
 
 // GetWindow returns the main browser window object.
 func GetWindow() Window {
 	return Window{
-		window:   js.Global,
-		Console:  Debug{console: js.Global.Get("console")},
-		Document: Htmldoc{document: js.Global.Get("document")},
+		window:         js.Global,
+		Console:        Debug{console: js.Global.Get("console")},
+		Document:       Htmldoc{document: js.Global.Get("document")},
+		LocalStorage:   WebStorage{storage: js.Global.Get("localStorage")},
+		SessionStorage: WebStorage{storage: js.Global.Get("sessionStorage")},
 	}
 }
 
@@ -39,9 +43,11 @@ func NewWindow(url string) Window {
 	w := js.Global.Call("open", url)
 
 	return Window{
-		window:   w,
-		Console:  Debug{console: w.Get("console")},
-		Document: Htmldoc{document: w.Get("document")},
+		window:         w,
+		Console:        Debug{console: w.Get("console")},
+		Document:       Htmldoc{document: w.Get("document")},
+		LocalStorage:   WebStorage{storage: js.Global.Get("localStorage")},
+		SessionStorage: WebStorage{storage: js.Global.Get("sessionStorage")},
 	}
 }
 

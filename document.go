@@ -24,14 +24,16 @@ func (d Htmldoc) GetElementById(id string) Element {
 }
 
 // To be implemented
-func (Htmldoc) ActiveElement()          {}
-func (Htmldoc) AddEventListener()       {}
-func (Htmldoc) AdoptNode()              {}
-func (Htmldoc) Anchors()                {}
-func (Htmldoc) Applets()                {}
-func (Htmldoc) BaseURI()                {}
-func (Htmldoc) Body()                   {}
-func (Htmldoc) Close()                  {}
+func (Htmldoc) ActiveElement()    {}
+func (Htmldoc) AddEventListener() {}
+func (Htmldoc) AdoptNode()        {}
+func (Htmldoc) Anchors()          {}
+func (Htmldoc) Applets()          {}
+func (Htmldoc) BaseURI()          {}
+func (Htmldoc) Body()             {}
+func (h *Htmldoc) Close() {
+	h.document.Call("close")
+}
 func (Htmldoc) Cookie()                 {}
 func (Htmldoc) Charset()                {}
 func (Htmldoc) CharacterSet()           {}
@@ -64,7 +66,11 @@ func (Htmldoc) LastModified()           {}
 func (Htmldoc) Links()                  {}
 func (Htmldoc) Normalize()              {}
 func (Htmldoc) NormalizeDocument()      {}
-func (Htmldoc) Open()                   {}
+func (h *Htmldoc) Open() {
+
+	h.document.Call("open")
+
+}
 
 // QuerySelector returns the first matching element where class = s.
 func (h *Htmldoc) QuerySelector(s string) Element {
@@ -94,5 +100,9 @@ func (Htmldoc) Scripts()             {}
 func (Htmldoc) StrictErrorChecking() {}
 func (Htmldoc) Title()               {}
 func (Htmldoc) URL()                 {}
-func (Htmldoc) Write()               {}
-func (Htmldoc) Writeln()             {}
+func (h *Htmldoc) Write(s string) {
+
+	h.document.Call("write", s)
+
+}
+func (Htmldoc) Writeln() {}
