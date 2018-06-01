@@ -110,6 +110,15 @@ func (e Element) SetValue(s string) {
 	e.el.Set("value", s)
 }
 
+// This is a form element method.
+func (e Element) Reset() {
+	e.el.Call("reset")
+}
+
+func (e Element) Form() string {
+	return (e.el.Get("form").Get("id").String())
+}
+
 func (Element) Normalize()              {}
 func (Element) OffsetHeight()           {}
 func (Element) OffsetWidth()            {}
