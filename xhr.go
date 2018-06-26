@@ -9,7 +9,7 @@ type XHR struct {
 }
 
 func NewXHR() XHR {
-	return XHR{xhr: js.Global.Get("XMLHttpRequest").New()}
+	return XHR{xhr: js.Global().Get("XMLHttpRequest").New()}
 }
 
 func (x *XHR) Open(url string, async bool) {
