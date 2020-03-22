@@ -202,6 +202,7 @@ func (c *Canvas) LineWidth(width float64)                        {}
 func (c *Canvas) AddColorStop()                                  {}
 
 //func (c *Canvas) Context()                                       {}
+
 // Width returns the width of the canvas.
 func (c *Canvas) Width() int {
 
